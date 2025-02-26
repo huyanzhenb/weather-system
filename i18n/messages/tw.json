@@ -1,0 +1,21 @@
+{
+  "HomeNav": {
+    "my": "我的天氣",
+    "weather": "天氣預報",
+    "air": "空氣質量",
+    "map": "天氣地圖"
+  },
+  
+    "Weather": {
+      "title": "天氣預報",
+      "details": "詳細天氣信息",
+      "today": "今日天氣",
+      "current": "當前天氣狀況",
+      "forecast": "未來預報",
+      "future": "未來幾天天氣",
+      "warning": "氣象預警",
+      "warningInfo": "天氣預警信息",
+      "lifeIndex": "生活指數",
+      "lifeAdvice": "生活建議"
+    }
+}

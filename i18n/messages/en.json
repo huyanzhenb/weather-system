@@ -1,0 +1,20 @@
+{
+  "HomeNav": {
+    "my": "My Weather",
+    "weather": "Weather Forecast",
+    "air": "Air Quality",
+    "map": "Weather Map"
+  },
+  "Weather": {
+    "title": "Weather Forecast",
+    "details": "Detailed Weather Information",
+    "today": "Today's Weather",
+    "current": "Current Weather Conditions",
+    "forecast": "Future Forecast",
+    "future": "Weather for Coming Days",
+    "warning": "Weather Warning",
+    "warningInfo": "Weather Warning Information",
+    "lifeIndex": "Life Index",
+    "lifeAdvice": "Life Suggestions"
+  }
+}
