@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: { locale: string }; // 将类型明确为对象而不是 Promise<any>
+  params: Promise<{ locale: string }>; // 将类型明确为对象而不是 Promise<any>
 }
 
 export default async function RootLayout({ children, params }: LayoutProps) {
