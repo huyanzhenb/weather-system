@@ -1,15 +1,8 @@
 import { getWeatherData } from '@/api/localWeather';
 import { getTranslations } from 'next-intl/server';
 
-interface PageProps {
-  params: {
-    locale: string;
-  };
-}
 
-export default async function WeatherPage({
-  params
-}: PageProps) {
+export default async function WeatherPage() {
   const t = await getTranslations('Weather');
 
   let latitude: number | null = null;
