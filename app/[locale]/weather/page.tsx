@@ -36,7 +36,7 @@ export default async function WeatherPage() {
           <h2 className="text-lg text-[#4791ff] font-semibold">{t('title')}</h2>
           <p className="text-[#4791ff]">{t('details')}</p>
           <div className='flex'>
-            <div>{weatherData?.now?.feelsLike}</div>
+            <div>{latitude}{longitude}</div>
           </div>
         </div>
 
