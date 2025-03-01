@@ -8,13 +8,33 @@ interface PageProps {
 }
 
 export default async function WeatherPage({
-    params
+  params
 }: PageProps) {
-    const { locale } = await params; 
+  const { locale } = await params;
   const t = await getTranslations('Weather');
-  const location = "麻城"; // 北京的 Location ID
-  const weatherData = await getWeatherData(location);
+
+  let latitude: number | null = null;
+  let longitude: number | null = null;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        latitude = parseFloat(position.coords.latitude.toFixed(2));
+        longitude = parseFloat(position.coords.longitude.toFixed(2));
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      },
+      (error) => {
+        console.error('Error getting geolocation: ', error);
+      }
+    );
+  } else {
+    console.log('Geolocation is not supported by this browser.');
+  }
+
+  const fullLocation = `${latitude},${longitude}`
+  const weatherData = await getWeatherData(fullLocation);
   console.log(weatherData)
+  console.log(latitude, longitude)
 
   return (
     <div className="p-4 bg-primary h-full">
@@ -23,6 +43,9 @@ export default async function WeatherPage({
         <div className="col-span-2 bg-blue-200 rounded-lg p-4 shadow-md">
           <h2 className="text-lg text-[#4791ff] font-semibold">{t('title')}</h2>
           <p className="text-[#4791ff]">{t('details')}</p>
+          <div className='flex'>
+            <div>{weatherData?.now?.feelsLike}</div>
+          </div>
         </div>
 
         {/* 左侧块 */}
@@ -51,4 +74,3 @@ export default async function WeatherPage({
     </div>
   );
 }
-  
