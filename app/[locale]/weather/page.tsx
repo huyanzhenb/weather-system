@@ -10,7 +10,6 @@ interface PageProps {
 export default async function WeatherPage({
   params
 }: PageProps) {
-  const { locale } = await params;
   const t = await getTranslations('Weather');
 
   let latitude: number | null = null;

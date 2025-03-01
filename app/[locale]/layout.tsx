@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
 import "../globals.css";
 import Link from "next/link";
 
@@ -25,9 +23,9 @@ export default async function RootLayout({
   const t = await getTranslations('HomeNav');  // 获取翻译文本
 
   // 校验 locale 是否有效
-  if (!routing.locales.includes(locale as any)) {
-    notFound();
-  }
+  // if (!routing.locales.includes(locale as "en")) {
+  //   notFound();
+  // }
 
   // 生成导航链接
   const links = [
