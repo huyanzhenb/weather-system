@@ -1,32 +1,23 @@
+import { getIpInfo } from '@/api/client';
 import { getWeatherData } from '@/api/localWeather';
 import { getTranslations } from 'next-intl/server';
+import { headers } from 'next/headers';
 
+enum Locale {
+  EN = "en",
+  ZH = "zh",
+  TC = "tw",
+}
 
-export default async function WeatherPage() {
+export default async function WeatherPage(params: Promise<{ locale: Locale }>) {
   const t = await getTranslations('Weather');
-
-  let latitude: number | null = null;
-  let longitude: number | null = null;
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        latitude = parseFloat(position.coords.latitude.toFixed(2));
-        longitude = parseFloat(position.coords.longitude.toFixed(2));
-        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-      },
-      (error) => {
-        console.error('Error getting geolocation: ', error);
-      }
-    );
-  } else {
-    console.log('Geolocation is not supported by this browser.');
-  }
-
-  const fullLocation = `${latitude},${longitude}`
-  const weatherData = await getWeatherData(fullLocation);
-  console.log(weatherData)
-  console.log(latitude, longitude)
+  const { locale } = await params;
+  const headersList = headers();
+  const xForwardedFor = (await headersList).get("x-forwarded-for");
+  const remoteAddress = (await headersList).get("x-real-ip");
+  const publicIP = xForwardedFor ? xForwardedFor.split(",")[0] : remoteAddress;
+  const ip = "180.175.217.233";
+  const ipInfo = await getIpInfo(locale, ip);
 
   return (
     <div className="p-4 bg-primary h-full">
@@ -36,7 +27,7 @@ export default async function WeatherPage() {
           <h2 className="text-lg text-[#4791ff] font-semibold">{t('title')}</h2>
           <p className="text-[#4791ff]">{t('details')}</p>
           <div className='flex'>
-            <div>1111{latitude}{longitude}</div>
+            <div>1111{ipInfo?.city}</div>
           </div>
         </div>
 
