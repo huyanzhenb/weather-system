@@ -9,9 +9,8 @@ enum Locale {
   TC = "tw",
 }
 
-export default async function WeatherPage(params: Promise<{ locale: Locale }>) {
+export default async function WeatherPage({ params: { locale } }: { params: { locale: Locale } }) {
   const t = await getTranslations('Weather');
-  const { locale } = await params;
   const headersList = headers();
   const xForwardedFor = (await headersList).get("x-forwarded-for");
   const remoteAddress = (await headersList).get("x-real-ip");

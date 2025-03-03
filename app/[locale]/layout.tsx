@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>; // 将类型明确为对象而不是 Promise<any>
+  params: { locale: string }; // 将类型明确为对象而不是 Promise<any>
 }
 
 export default async function RootLayout({ children, params }: LayoutProps) {
   // 等待 params 被解析
-  const { locale } = await params; // 必须使用 await 解析 params
+  const { locale } = params; // 必须使用 await 解析 params
 
   const messages = await getMessages({ locale });  // 使用获取的 locale 来获取消息
   const t = await getTranslations('HomeNav');  // 获取翻译文本
@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.href}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-md transition-colors duration-200"
                     >
