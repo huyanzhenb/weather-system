@@ -25,14 +25,14 @@ export default async function WeatherPage({ params }: LayoutProps) {
   console.log(weatherData)
 
   return (
-    <div className="p-4 bg-primary h-full">
+    <div className="p-4 bg-primary h-full"> 
       <div className="grid h-full grid-cols-2 gap-4">
         {/* 顶部横跨两列的大块 */}
         <div className="col-span-2 bg-blue-200 rounded-lg p-4 shadow-md">
           <h2 className="text-lg text-[#4791ff] font-semibold">{t('title')}</h2>
           <p className="text-[#4791ff]">{t('details')}</p>
           <div className='flex'>
-            <div>1111{geoapiData?.location[0]?.name}{weatherData?.now.windDir}</div>
+            <div className='text-black'>1111{geoapiData?.location[0]?.name}   {weatherData?.now.windDir}  {weatherData?.now.text}  {weatherData?.now.temp} {weatherData?.now.temp} </div>
           </div>
         </div>
 
