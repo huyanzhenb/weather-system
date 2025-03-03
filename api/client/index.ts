@@ -24,6 +24,9 @@ interface IpInfo {
   country?: string;
   city?: string;
   timezone?: string;
+  lat?:number;
+  lon?:number;
+  regionName?:string
 }
 
 interface GetJsonOptions {

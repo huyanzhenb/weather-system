@@ -1,4 +1,5 @@
 import { getIpInfo, Locale } from '@/api/client';
+import { getGeoapiData, getWeatherData } from '@/api/localWeather';
 import { getTranslations } from 'next-intl/server';
 import { headers } from 'next/headers';
 interface LayoutProps {
@@ -12,8 +13,16 @@ export default async function WeatherPage({ params }: LayoutProps) {
   const xForwardedFor = (await headersList).get("x-forwarded-for");
   const remoteAddress = (await headersList).get("x-real-ip");
   const publicIP = xForwardedFor ? xForwardedFor.split(",")[0] : remoteAddress;
-  const ip = "180.175.217.233";
+  // const ip = "180.175.217.233";
   const ipInfo = await getIpInfo(locale, publicIP || "");
+  const lat = ipInfo.lat ? ipInfo.lat.toFixed(2) : null;
+  const lon = ipInfo.lon ? ipInfo.lon.toFixed(2) : null;
+  const location = lat && lon ? `${lon},${lat}` : ipInfo?.regionName || ipInfo?.city;
+  const geoapiData = await getGeoapiData(location || "北京")
+  const weatherData = await getWeatherData(geoapiData?.location[0].id || "北京")
+  console.log(location)
+  console.log(geoapiData)
+  console.log(weatherData)
 
   return (
     <div className="p-4 bg-primary h-full">
