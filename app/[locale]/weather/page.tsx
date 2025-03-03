@@ -13,7 +13,7 @@ export default async function WeatherPage({ params }: LayoutProps) {
   const remoteAddress = (await headersList).get("x-real-ip");
   const publicIP = xForwardedFor ? xForwardedFor.split(",")[0] : remoteAddress;
   const ip = "180.175.217.233";
-  const ipInfo = await getIpInfo(locale, ip || "");
+  const ipInfo = await getIpInfo(locale, publicIP || "");
 
   return (
     <div className="p-4 bg-primary h-full">
