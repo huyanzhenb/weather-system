@@ -1,6 +1,6 @@
 
 
-enum Locale {
+export enum Locale {
   EN = "en",
   ZH = "zh",
   TC = "tw",

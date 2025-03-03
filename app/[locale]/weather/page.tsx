@@ -1,13 +1,7 @@
-import { getIpInfo } from '@/api/client';
-import { getWeatherData } from '@/api/localWeather';
+import { getIpInfo, Locale } from '@/api/client';
 import { getTranslations } from 'next-intl/server';
 import { headers } from 'next/headers';
 
-enum Locale {
-  EN = "en",
-  ZH = "zh",
-  TC = "tw",
-}
 
 export default async function WeatherPage({ params: { locale } }: { params: { locale: Locale } }) {
   const t = await getTranslations('Weather');
