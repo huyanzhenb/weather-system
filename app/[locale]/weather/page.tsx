@@ -1,18 +1,17 @@
 import { getIpInfo, Locale } from '@/api/client';
-import { getWeatherData } from '@/api/localWeather';
 import { getTranslations } from 'next-intl/server';
 import { headers } from 'next/headers';
 
 
 export default async function WeatherPage(params: Promise<{ locale: Locale }>) {
-  const t = await getTranslations('Weather');
   const { locale } = await params;
+  const t = await getTranslations('Weather');
   const headersList = headers();
   const xForwardedFor = (await headersList).get("x-forwarded-for");
   const remoteAddress = (await headersList).get("x-real-ip");
   const publicIP = xForwardedFor ? xForwardedFor.split(",")[0] : remoteAddress;
-  // const ip = "180.175.217.233";
-  const ipInfo = await getIpInfo(locale, publicIP || "");
+  const ip = "180.175.217.233";
+  const ipInfo = await getIpInfo(locale, ip || "");
 
   return (
     <div className="p-4 bg-primary h-full">
