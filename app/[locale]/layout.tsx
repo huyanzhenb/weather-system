@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import "../globals.css";
 import Link from "next/link";
-import { Locale } from "@/i18n/routing";
+import { Locale } from "@/api/client";
 
 export const metadata: Metadata = {
   title: "Create Next App",
