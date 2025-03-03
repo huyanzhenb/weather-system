@@ -1,10 +1,12 @@
 import { getIpInfo, Locale } from '@/api/client';
+import { getWeatherData } from '@/api/localWeather';
 import { getTranslations } from 'next-intl/server';
 import { headers } from 'next/headers';
 
 
-export default async function WeatherPage({ params: { locale } }: { params: { locale: Locale } }) {
+export default async function WeatherPage(params: Promise<{ locale: Locale }>) {
   const t = await getTranslations('Weather');
+  const { locale } = await params;
   const headersList = headers();
   const xForwardedFor = (await headersList).get("x-forwarded-for");
   const remoteAddress = (await headersList).get("x-real-ip");
