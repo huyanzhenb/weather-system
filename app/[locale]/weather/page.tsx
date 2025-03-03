@@ -32,7 +32,7 @@ export default async function WeatherPage({ params }: LayoutProps) {
           <h2 className="text-lg text-[#4791ff] font-semibold">{t('title')}</h2>
           <p className="text-[#4791ff]">{t('details')}</p>
           <div className='flex'>
-            <div>1111{ipInfo?.city}</div>
+            <div>1111{geoapiData?.location[0]?.name}{weatherData?.now.windDir}</div>
           </div>
         </div>
 
