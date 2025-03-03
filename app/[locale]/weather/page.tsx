@@ -1,9 +1,11 @@
 import { getIpInfo, Locale } from '@/api/client';
 import { getTranslations } from 'next-intl/server';
 import { headers } from 'next/headers';
+interface LayoutProps {
+  params: Promise<{ locale: Locale }>; // 将类型明确为对象而不是 Promise<any>
+}
 
-
-export default async function WeatherPage(params: Promise<{ locale: Locale }>) {
+export default async function WeatherPage({ params }: LayoutProps) {
   const { locale } = await params;
   const t = await getTranslations('Weather');
   const headersList = headers();
