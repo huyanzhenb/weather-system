@@ -16,8 +16,8 @@ export default async function WeatherPage(params: Promise<{ locale: Locale }>) {
   const xForwardedFor = (await headersList).get("x-forwarded-for");
   const remoteAddress = (await headersList).get("x-real-ip");
   const publicIP = xForwardedFor ? xForwardedFor.split(",")[0] : remoteAddress;
-  const ip = "180.175.217.233";
-  const ipInfo = await getIpInfo(locale, ip);
+  // const ip = "180.175.217.233";
+  const ipInfo = await getIpInfo(locale, publicIP || "");
 
   return (
     <div className="p-4 bg-primary h-full">
