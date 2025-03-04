@@ -26,8 +26,8 @@ export default async function WeatherPage({ params }: LayoutProps) {
 
   return (
     <div className="p-4 bg-[#636366] h-full">
-      <div className="flex h-[70%] bg-[#2D2E32] rounded-xl p-4">
-        <div className="">
+      <div className="flex h-[60%] gap-4 m-2">
+        <div className="bg-[#2D2E32] rounded-[16px] w-[70%] p-6">
           <div className="flex justify-between items-center">
             <div className='flex justify-between'>
               <h1>香港特别行政区</h1>
@@ -67,6 +67,7 @@ export default async function WeatherPage({ params }: LayoutProps) {
             </a>
           </div>
         </div>
+        <div className='bg-[#2D2E32] rounded-[16px] w-full flex-1'></div>
 
       </div>
     </div>
