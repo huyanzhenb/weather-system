@@ -25,39 +25,49 @@ export default async function WeatherPage({ params }: LayoutProps) {
   console.log(weatherData)
 
   return (
-    <div className="p-4 bg-primary h-full"> 
-      <div className="grid h-full grid-cols-2 gap-4">
-        {/* 顶部横跨两列的大块 */}
-        <div className="col-span-2 bg-blue-200 rounded-lg p-4 shadow-md">
-          <h2 className="text-lg text-[#4791ff] font-semibold">{t('title')}</h2>
-          <p className="text-[#4791ff]">{t('details')}</p>
-          <div className='flex'>
-            <div className='text-black'>1111{geoapiData?.location[0]?.name}   {weatherData?.now.windDir}  {weatherData?.now.text}  {weatherData?.now.temp} {weatherData?.now.temp} </div>
+    <div className="p-4 bg-[#636366] h-full">
+      <div className="flex h-[70%] bg-[#2D2E32] rounded-xl p-4">
+        <div className="">
+          <div className="flex justify-between items-center">
+            <div className='flex justify-between'>
+              <h1>香港特别行政区</h1>
+              <span>香港特别行政区/中国</span>
+            </div>
+            <p className="current-time">2025-03-05 02:26</p>
+          </div>
+          <div className="current-live">
+            <div className="current-live__item">
+              <a href="/weather/hong-kong-101320101.html">
+                <img src="https://a.hecdn.net/img/common/icon/202106d/104.png" alt="QWeather" />
+              </a>
+            </div>
+            <div className="current-live__item">
+              <a href="/weather/hong-kong-101320101.html">
+                <p>17°</p>
+                <p>阴</p>
+              </a>
+              <a className="air-tag air-tag--1" href="/air/hong-kong-101320101.html">
+                AQI 优
+              </a>
+            </div>
+          </div>
+          <div className="current-abstract">
+            <a href="/weather/hong-kong-101320101.html">
+              今晚中雨。明天多云，比昨天凉爽一些（20°），有风, 空气不错。
+            </a>
+          </div>
+          <div className="current-basic flex justify-between items-center">
+            <a href="/weather/hong-kong-101320101.html" className="current-basic___item">
+              <p>3级</p>
+              <p>东南风</p>
+            </a>
+            <a href="/weather/hong-kong-101320101.html" className="current-basic___item">
+              <p>89%</p>
+              <p>相对湿度</p>
+            </a>
           </div>
         </div>
 
-        {/* 左侧块 */}
-        <div className="bg-green-200 rounded-lg p-4 shadow-md">
-          <h2 className="text-lg text-[#4791ff] font-semibold">{t('today')}</h2>
-          <p className="text-[#4791ff]">{t('current')}</p>
-        </div>
-
-        {/* 右侧块 */}
-        <div className="bg-yellow-200 rounded-lg p-4 shadow-md">
-          <h2 className="text-lg text-[#4791ff] font-semibold">{t('forecast')}</h2>
-          <p className="text-[#4791ff]">{t('future')}</p>
-        </div>
-
-        {/* 底部两个横跨两列的块 */}
-        <div className="col-span-2 bg-purple-200 rounded-lg p-4 shadow-md">
-          <h2 className="text-lg text-[#4791ff] font-semibold">{t('warning')}</h2>
-          <p className="text-[#4791ff]">{t('warningInfo')}</p>
-        </div>
-
-        <div className="col-span-2 bg-pink-200 rounded-lg p-4 shadow-md">
-          <h2 className="text-lg text-[#4791ff] font-semibold">{t('lifeIndex')}</h2>
-          <p className="text-[#4791ff]">{t('lifeAdvice')}</p>
-        </div>
       </div>
     </div>
   );
