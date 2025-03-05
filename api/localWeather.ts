@@ -142,3 +142,50 @@ export async function getGeoapiData(location: string): Promise<GeoapiData | null
     return null;
   }
 }
+
+interface DetailData {
+  code: string; // API返回的状态码，例如 "200"
+  updateTime?: string; // 数据更新时间，格式为 ISO 8601，例如 "2021-12-16T18:35+08:00"
+  fxLink?: string; // 预报链接，可能为空
+  daily: {
+    date: string; // 日期，格式为 YYYY-MM-DD
+    type: string; // 指数类型，例如 "1" 或 "2"
+    name: string; // 指数名称，例如 "运动指数" 或 "洗车指数"
+    level: string; // 指数等级，例如 "3"
+    category: string; // 指数分类，例如 "较不宜"
+    text: string; // 指数描述
+  }[];
+  refer: {
+    sources: string[]; // 数据来源数组，例如 ["QWeather"]
+    license: string[]; // 数据许可信息数组，例如 ["QWeather Developers License"]
+  };
+}
+
+export async function getDetailData(location: string): Promise<DetailData | null> {
+  try {
+    const apiKey ='777dc0a1f97544a1b5a4ea6e2d7019a2';
+    const apiUrl = `https://devapi.qweather.com/v7/indices/1d?type=1&location=${location}&key=${apiKey}`;
+
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", // 正确设置 Authorization 请求头
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+    }
+
+    const data: DetailData = await response.json();
+    if (data.code === "200") {
+      return data;
+    } else {
+      console.warn("QWeather API Error:", data.code);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+    return null;
+  }
+}
